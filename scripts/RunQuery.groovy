@@ -26,7 +26,7 @@ target(main: 'Run Hibernate HQL statement') {
 		event "StatusError", ["- Too many arguments: $error The argument list will be trimmed"]
 		args = args[0..<paramCount]
 	}
-	event("StatusUpdate", ["- Running query '${query}' with args $args"])
+	event("StatusUpdate", ["Running query '${query.replace('\n', '; ')}' with args $args"])
 	def rows = sql.rows(query, args)
 	rows.each { println it }
 
